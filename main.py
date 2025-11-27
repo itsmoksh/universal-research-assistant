@@ -1,6 +1,6 @@
 import streamlit as st
 from rag import process_urls,generate
-st.title("Real Estate Assistant")
+st.title("Universal Research Assistant")
 
 st.sidebar.subheader("Enter Url's")
 url1 = st.sidebar.text_input("URL 1")
@@ -21,17 +21,20 @@ if process_urls_button:
                 st.write(url_status)
             status.update(label = "Chunks stored, now you can ask questions",expanded = False)
 
-query = st.text_input("Question")
-if query:
+prompt = st.chat_input("Ask your Question")
+if prompt:
     try:
-        solution, sources = generate(query)
-        st.header("Answer:")
-        st.write(solution)
-        if sources:
-            st.header("Source:")
-            unique_source = set(sources)
-            for source in unique_source:
-                st.write(source)
+        solution, sources = generate(prompt)
+        with st.chat_message(name = "Assistant",avatar=None):
+            st.subheader("Question")
+            st.write(prompt)
+            st.subheader("Answer:")
+            st.write(solution)
+            if sources:
+                st.subheader("Source:")
+                unique_source = set(sources)
+                for source in unique_source:
+                    st.write(source)
 
     except RuntimeError as e:
         st.error("You must process the url first")
