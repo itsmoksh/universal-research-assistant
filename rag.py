@@ -34,8 +34,10 @@ def initialize():
             persist_directory= './resources/vectorstore',
             embedding_function=ef,
         )
-        vector_store.reset_collection()
 
+def reset_vector_store():
+    global vector_store
+    vector_store.reset_collection()
 
 def process_urls(urls):
     initialize()

@@ -1,6 +1,10 @@
 import streamlit as st
-from rag import process_urls,generate
+from rag import process_urls,generate,reset_
 st.title("Universal Research Assistant")
+
+if "initialized" not in st.session_state:
+    reset_vector_store()        # <<< reset happens here, and ONLY once
+    st.session_state.initialized = True
 
 #Url sidebar
 st.sidebar.subheader("Enter Url's")
