@@ -6,4 +6,5 @@ streamlit~=1.46.0
 langchain-chroma==1.0.0
 langchain-groq==1.1.0
 langchain-huggingface==1.1.0
-sentence-transformers==5.1.2
+sentence-transformers==5.1.2  #Streamlit deployment, Load hugging face embeddings
+beautifulsoup4==4.13.3 #Streamlit deployement, web base loader internally uses it.
