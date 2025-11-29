@@ -40,12 +40,10 @@ for message in st.session_state['message']:
 
     else:
         with st.chat_message(name = 'Assistant'):
-            if 'result' in message:
-                st.caption("Solution")
-                st.markdown(message['result'])
-            if 'source' in message:
-                st.caption("Sources")
-                st.markdown(message['source'])
+            st.caption("Solution")
+            st.markdown(message['result'])
+            st.caption("Sources")
+            st.markdown(message['source'])
 
 # Generating results
 if prompt:
@@ -63,8 +61,7 @@ if prompt:
                 unique_source = set(sources)
                 for source in unique_source:
                     st.markdown(source)
-        st.session_state.message.append({'role': "Assistant", 'result': solution})
-        st.session_state.message.append({'role': "Assistant", 'source': source})
+        st.session_state.message.append({'role': "Assistant", 'result': solution,'source': source})
 
     except RuntimeError as e:
         st.error("You must process the url first")
