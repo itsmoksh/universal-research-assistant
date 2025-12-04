@@ -1,6 +1,6 @@
 import streamlit as st
 from rag import process_urls,generate,reset_vector_store
-st.title("Universal Research Assistant")
+st.title("Research Assistant")
 
 if "initialized" not in st.session_state:
     reset_vector_store()        # <<< reset happens here, and ONLY once
